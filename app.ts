@@ -17,16 +17,28 @@
 // const phrase = "Result is: ";
 // addNumbers(3, 9, printResult, phrase);
 
-const person: {
-	name: string;
-	age: number;
-	hobbies: string[];
-	role: [number, string];
-} = {
+// const person: {
+// 	name: string;
+// 	age: number;
+// 	hobbies: string[];
+// 	role: [number, string];
+// } = {
+// 	name: "Nishant",
+// 	age: 19,
+// 	hobbies: ["Reading", "Anime"],
+// 	role: [9, "Basketball Player"],
+// };
+
+enum Role {
+	ADMIN,
+	PLAYER,
+	USER,
+}
+const person = {
 	name: "Nishant",
 	age: 19,
 	hobbies: ["Reading", "Anime"],
-	role: [9, "Basketball Player"],
+	role: Role.ADMIN,
 };
 
-console.log(person.name);
+console.log(person.role);
