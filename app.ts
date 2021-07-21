@@ -29,16 +29,48 @@
 // 	role: [9, "Basketball Player"],
 // };
 
-enum Role {
-	ADMIN,
-	PLAYER,
-	USER,
-}
-const person = {
-	name: "Nishant",
-	age: 19,
-	hobbies: ["Reading", "Anime"],
-	role: Role.ADMIN,
-};
+// enum Role {
+// 	ADMIN,
+// 	PLAYER,
+// 	USER,
+// }
 
-console.log(person.role);
+// const person = {
+// 	name: "Nishant",
+// 	age: 19,
+// 	hobbies: ["Reading", "Anime"],
+// 	role: Role.PLAYER,
+// };
+
+// console.log(person.role);
+
+type Combinable = number | string;
+
+let literalType: "as-text" | "as-number"; //Literal type
+
+function combine(input1: Combinable, input2: Combinable) {
+	if (typeof input1 === "number" && typeof input2 === "number") {
+		return input1 + input2;
+	} else {
+		return input1.toString() + input2.toString();
+	}
+}
+
+console.log(combine("Hello", "world"));
+
+console.log(combine(5, 5));
+
+//Function type
+
+let newFunctionType: (a: number, b: number) => number;
+
+function add(a: number, b: number): number {
+	return a + b;
+}
+
+function printResult(a: number): void {
+	console.log(a);
+}
+
+newFunctionType = add;
+// newFunctionType = printResult;
