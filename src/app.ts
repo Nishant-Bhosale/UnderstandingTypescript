@@ -74,3 +74,35 @@ function printResult(a: number): void {
 
 newFunctionType = add;
 // newFunctionType = printResult;
+
+//Classes in TypeScript
+
+class Person {
+	name: string;
+	private hobbies: string[] = [];
+
+	constructor(n: string) {
+		this.name = n;
+	}
+
+	describeYourself(this: Person) {
+		console.log(`Hello ${this.name}`);
+	}
+
+	addHobbies(hobby: string) {
+		this.hobbies.push(hobby);
+	}
+
+	viewHobbies() {
+		console.log(this.hobbies);
+	}
+}
+
+const newPerson = new Person("Nishant");
+
+newPerson.describeYourself();
+newPerson.addHobbies("Reading");
+
+newPerson.viewHobbies();
+console.log(newPerson);
+console.log(newPerson.name);

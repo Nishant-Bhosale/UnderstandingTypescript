@@ -27,3 +27,25 @@ function printResult(a) {
 }
 newFunctionType = add;
 // newFunctionType = printResult;
+//Classes in TypeScript
+class Person {
+    constructor(n) {
+        this.hobbies = [];
+        this.name = n;
+    }
+    describeYourself() {
+        console.log(`Hello ${this.name}`);
+    }
+    addHobbies(hobby) {
+        this.hobbies.push(hobby);
+    }
+    viewHobbies() {
+        console.log(this.hobbies);
+    }
+}
+const newPerson = new Person("Nishant");
+newPerson.describeYourself();
+newPerson.addHobbies("Reading");
+newPerson.viewHobbies();
+console.log(newPerson);
+console.log(newPerson.name);
