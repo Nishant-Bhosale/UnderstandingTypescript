@@ -42,6 +42,7 @@ class Truck {
 }
 const v1 = new Car();
 const v2 = new Truck();
+//InstaceOf
 function useVehicle(vehicle) {
     vehicle.drive();
     if (vehicle instanceof Truck) {

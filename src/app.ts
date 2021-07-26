@@ -86,6 +86,7 @@ const v2 = new Truck();
 
 type Vehicle = Car | Truck;
 
+//InstaceOf
 function useVehicle(vehicle: Vehicle) {
 	vehicle.drive();
 
@@ -96,3 +97,53 @@ function useVehicle(vehicle: Vehicle) {
 
 useVehicle(v1);
 useVehicle(v2);
+
+interface Bird {
+	type: "bird";
+	ability: string;
+}
+
+interface Tiger {
+	type: "mammal";
+	anotherAbility: string;
+}
+
+type Animal = Bird | Tiger;
+
+function printAbility(animal: Animal) {
+	switch (animal.type) {
+		case "bird":
+			console.log(animal.ability);
+			break;
+		case "mammal":
+			console.log(animal.anotherAbility);
+	}
+}
+
+//Type Casting
+const inputElement = <HTMLInputElement>document.querySelector(".inputElement");
+
+//Index Type
+interface ErrorContainer {
+	[prop: string]: string;
+}
+
+const newError: ErrorContainer = {
+	name: "Nishant",
+};
+
+type Combination = string | number;
+
+//Functional Overload
+function combineTwo(a: number, b: number): number;
+function combineTwo(a: string, b: string): string;
+function combineTwo(a: number, b: string): string;
+function combineTwo(a: Combination, b: Combination) {
+	if (typeof a === "string" || typeof b === "string") {
+		return a.toString() + b.toString();
+	}
+	return a + b;
+}
+
+const num = combineTwo(4, "hello");
+num.split(" ");
