@@ -147,3 +147,22 @@ function combineTwo(a: Combination, b: Combination) {
 
 const num = combineTwo(4, "hello");
 num.split(" ");
+
+//Generics
+const names: Array<string> = ["Nishant Bhosale"];
+
+names[0].split(" ");
+
+//Promise Generic
+const promise: Promise<number> = new Promise((resolve, reject) => {
+	setTimeout(() => resolve(43), 1000);
+});
+
+promise.then((num) => console.log(num));
+
+//Custom Generic Function
+function mergeObject<T, U>(objA: object, objB: object) {
+	return Object.assign(objA, objB);
+}
+
+const mergedObj = mergeObject({ name: "Nishant" }, { lastName: "Bhosale" });
