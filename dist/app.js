@@ -51,3 +51,54 @@ function useVehicle(vehicle) {
 }
 useVehicle(v1);
 useVehicle(v2);
+function printAbility(animal) {
+    switch (animal.type) {
+        case "bird":
+            console.log(animal.ability);
+            break;
+        case "mammal":
+            console.log(animal.anotherAbility);
+    }
+}
+//Type Casting
+const inputElement = document.querySelector(".inputElement");
+const newError = {
+    name: "Nishant",
+};
+function combineTwo(a, b) {
+    if (typeof a === "string" || typeof b === "string") {
+        return a.toString() + b.toString();
+    }
+    return a + b;
+}
+const num = combineTwo(4, "hello");
+num.split(" ");
+//Generics
+const names = ["Nishant Bhosale"];
+names[0].split(" ");
+//Promise Generic
+const promise = new Promise((resolve, reject) => {
+    setTimeout(() => resolve(43), 1000);
+});
+promise.then((num) => console.log(num));
+//Custom Generic Function
+//T extends object is a generic constraint
+function mergeObject(objA, objB) {
+    return Object.assign(objA, objB);
+}
+const mergedObj = mergeObject({ name: "Nishant" }, { lastName: "Bhosale" });
+function countAndDescribe(element) {
+    let description = "No Value is Assigned";
+    if (element.length === 1) {
+        description = "Got one Element";
+    }
+    else if (element.length > 1) {
+        description = `Got ${element.length} elements`;
+    }
+    return [element, description];
+}
+function extractAndConvert(obj, key) {
+    return "Value: " + obj[key];
+}
+console.log(extractAndConvert({ name: "Nishant" }, "name"));
+console.log(countAndDescribe("Hello world")[1]);

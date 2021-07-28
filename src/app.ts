@@ -161,8 +161,35 @@ const promise: Promise<number> = new Promise((resolve, reject) => {
 promise.then((num) => console.log(num));
 
 //Custom Generic Function
-function mergeObject<T, U>(objA: object, objB: object) {
+//T extends object is a generic constraint
+function mergeObject<T extends object, U extends object>(objA: T, objB: U) {
 	return Object.assign(objA, objB);
 }
 
 const mergedObj = mergeObject({ name: "Nishant" }, { lastName: "Bhosale" });
+
+interface Lengthy {
+	length: number;
+}
+
+function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
+	let description = "No Value is Assigned";
+
+	if (element.length === 1) {
+		description = "Got one Element";
+	} else if (element.length > 1) {
+		description = `Got ${element.length} elements`;
+	}
+
+	return [element, description];
+}
+
+function extractAndConvert<T extends object, U extends keyof T>(
+	obj: T,
+	key: U,
+) {
+	return "Value: " + obj[key];
+}
+
+console.log(extractAndConvert({ name: "Nishant" }, "name"));
+console.log(countAndDescribe("Hello world")[1]);
