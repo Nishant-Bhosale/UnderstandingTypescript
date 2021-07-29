@@ -216,3 +216,24 @@ const asus = new Laptop<string>();
 
 asus.addProcessor("i5");
 console.log(asus.getProcessors());
+
+//Decorators
+
+function logUser(bookName: string) {
+	return function (constructor: Function) {
+		console.log(constructor);
+		console.log(bookName);
+	};
+}
+
+@logUser("Bhagvad Gita")
+class Book {
+	protected readonly name = "Elon Musk";
+	protected readonly author = "Ashlee Vance";
+
+	constructor() {
+		console.log("Logging in ...");
+	}
+}
+
+const newBook = new Book();

@@ -1,4 +1,10 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 class AnotherPerson {
     constructor(n) {
         this.age = 30;
@@ -97,8 +103,45 @@ function countAndDescribe(element) {
     }
     return [element, description];
 }
+//keyof property constraint
 function extractAndConvert(obj, key) {
     return "Value: " + obj[key];
 }
 console.log(extractAndConvert({ name: "Nishant" }, "name"));
 console.log(countAndDescribe("Hello world")[1]);
+//GENERIC CLASS TYPES
+class Laptop {
+    constructor() {
+        this.processor = [];
+    }
+    addProcessor(newProcessor) {
+        this.processor.push(newProcessor);
+    }
+    removeProcessor(processorName) {
+        this.processor.splice(this.processor.indexOf(processorName), 1);
+    }
+    getProcessors() {
+        return this.processor;
+    }
+}
+const asus = new Laptop();
+asus.addProcessor("i5");
+console.log(asus.getProcessors());
+//Decorators
+function logUser(bookName) {
+    return function (constructor) {
+        console.log(constructor);
+        console.log(bookName);
+    };
+}
+let Book = class Book {
+    constructor() {
+        this.name = "Elon Musk";
+        this.author = "Ashlee Vance";
+        console.log("Logging in ...");
+    }
+};
+Book = __decorate([
+    logUser("Bhagvad Gita")
+], Book);
+const newBook = new Book();
