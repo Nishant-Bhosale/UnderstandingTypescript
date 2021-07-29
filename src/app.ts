@@ -184,6 +184,7 @@ function countAndDescribe<T extends Lengthy>(element: T): [T, string] {
 	return [element, description];
 }
 
+//keyof property constraint
 function extractAndConvert<T extends object, U extends keyof T>(
 	obj: T,
 	key: U,
@@ -193,3 +194,25 @@ function extractAndConvert<T extends object, U extends keyof T>(
 
 console.log(extractAndConvert({ name: "Nishant" }, "name"));
 console.log(countAndDescribe("Hello world")[1]);
+
+//GENERIC CLASS TYPES
+class Laptop<T> {
+	processor: T[] = [];
+
+	addProcessor(newProcessor: T) {
+		this.processor.push(newProcessor);
+	}
+
+	removeProcessor(processorName: T) {
+		this.processor.splice(this.processor.indexOf(processorName), 1);
+	}
+
+	getProcessors() {
+		return this.processor;
+	}
+}
+
+const asus = new Laptop<string>();
+
+asus.addProcessor("i5");
+console.log(asus.getProcessors());
