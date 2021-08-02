@@ -128,20 +128,46 @@ const asus = new Laptop();
 asus.addProcessor("i5");
 console.log(asus.getProcessors());
 //Decorators
-function logUser(bookName) {
-    return function (constructor) {
-        console.log(constructor);
-        console.log(bookName);
+// function logUser(bookName: string) {
+// 	return function (constructor: Function) {
+// 		console.log(constructor);
+// 		console.log(bookName);
+// 	};
+// }
+// @logUser("Bhagvad Gita")
+// class Book {
+// 	protected readonly name = "Elon Musk";
+// 	protected readonly author = "Ashlee Vance";
+// 	constructor() {
+// 		console.log("Logging in ...");
+// 	}
+// }
+// const newBook = new Book();
+//Autobind
+function autobind(_, _2, descriptor) {
+    const originalMethod = descriptor.value;
+    const adjDescriptor = {
+        configurable: true,
+        enumerable: false,
+        get() {
+            const boundFn = originalMethod.bind(this);
+            return boundFn;
+        },
     };
+    return adjDescriptor;
 }
-let Book = class Book {
+class Printer {
     constructor() {
-        this.name = "Elon Musk";
-        this.author = "Ashlee Vance";
-        console.log("Logging in ...");
+        this.message = "This works";
     }
-};
-Book = __decorate([
-    logUser("Bhagvad Gita")
-], Book);
-const newBook = new Book();
+    showMessage() {
+        console.log(this.message);
+    }
+}
+__decorate([
+    autobind
+], Printer.prototype, "showMessage", null);
+const p = new Printer();
+p.showMessage();
+const btn = document.querySelector(".demo");
+btn.addEventListener("click", p.showMessage);

@@ -219,21 +219,54 @@ console.log(asus.getProcessors());
 
 //Decorators
 
-function logUser(bookName: string) {
-	return function (constructor: Function) {
-		console.log(constructor);
-		console.log(bookName);
+// function logUser(bookName: string) {
+// 	return function (constructor: Function) {
+// 		console.log(constructor);
+// 		console.log(bookName);
+// 	};
+// }
+
+// @logUser("Bhagvad Gita")
+// class Book {
+// 	protected readonly name = "Elon Musk";
+// 	protected readonly author = "Ashlee Vance";
+
+// 	constructor() {
+// 		console.log("Logging in ...");
+// 	}
+// }
+
+// const newBook = new Book();
+
+//Autobind
+
+function autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
+	const originalMethod = descriptor.value;
+	const adjDescriptor: PropertyDescriptor = {
+		configurable: true,
+		enumerable: false,
+		get() {
+			const boundFn = originalMethod.bind(this);
+			return boundFn;
+		},
 	};
+
+	return adjDescriptor;
 }
 
-@logUser("Bhagvad Gita")
-class Book {
-	protected readonly name = "Elon Musk";
-	protected readonly author = "Ashlee Vance";
+class Printer {
+	message = "This works";
 
-	constructor() {
-		console.log("Logging in ...");
+	@autobind
+	showMessage() {
+		console.log(this.message);
 	}
 }
 
-const newBook = new Book();
+const p = new Printer();
+
+p.showMessage();
+
+const btn = document.querySelector(".demo")!;
+
+btn.addEventListener("click", p.showMessage);
